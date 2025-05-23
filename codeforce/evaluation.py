@@ -3,7 +3,7 @@ import json
 import subprocess
 import resource
 
-CODEFORCE_FILE = 'codeforce.jsonl'  # 注意：不是 .py，是 JSONL
+CODEFORCE_FILE = 'codeforce.jsonl'
 CODE_DIR = 'text'
 TEMP_CODE = 'temp_check.py'
 RESULTS = []
@@ -88,7 +88,7 @@ for filename in os.listdir(CODE_DIR):
         print(f" ID {problem_id}: Passed {passed}/{total}\n")
         RESULTS.append((problem_id, passed, total))
 
-# 清理
+
 if os.path.exists(TEMP_CODE):
     os.remove(TEMP_CODE)
 
