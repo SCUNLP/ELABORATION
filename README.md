@@ -6,3 +6,5 @@ The paper "ELABORATION: A Comprehensive Benchmark on Human-LLM Competitive Progr
 
 ### Dataset Construction
 ![dataset](./img/dataset.png)
+
+more details will be updated soon. 
