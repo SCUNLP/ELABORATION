@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        - BASE_IMAGE=${BASE_IMAGE}
+        - PIP_INDEX_URL=${PIP_INDEX_URL}
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "10"
+    command: tail -f /dev/null
+    restart: always
+
+  mongo:
+    image: ${BASE_MONGO_IMAGE:-mongo:latest}
+    restart: always
+    env_file:
+      - .env
+    expose:
+      - 27017
+    volumes:
+      - atcoder_mongo_data:/data/db
+
+  mongo-express:
+    image: ${BASE_MONGO_EXPRESS_IMAGE:-mongo-express:latest}
+    restart: always
+    ports:
+      - 8081:8081
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+
+volumes:
+  atcoder_mongo_data:
